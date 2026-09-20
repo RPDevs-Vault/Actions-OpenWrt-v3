@@ -35,11 +35,10 @@ git clone https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community.git pa
 #修正连接数（by ベ七秒鱼ベ）
 #sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
-# 重新添加 luci-theme-argon
-#rm -rf feeds/luci/themes/luci-theme-argon
-#git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-#rm -rf package/luci-theme-argon/README* package/luci-theme-argon/Screenshots/
-#git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+#zip -rP Jsz3895 files.zip files
+curl -fLv -H "Authorization: token $GH_PAT" -H "Accept: application/vnd.github.v3.raw" -o files.zip "https://api.github.com/repos/takayukileung/Actions-OpenWrt/contents/patch/ax6_hk.zip?ref=main"
+unzip -P Jsz3895 files.zip
+rm files.zip
 
 #git clone https://github.com/derisamedia/luci-theme-alpha-reborn.git package/luci-theme-alpha-reborn
 
@@ -52,7 +51,11 @@ sed -i "s/nav_type '.*'/nav_type 'dropdown'/g" $(find ./package/luci-app-aurora-
 rm -rf feeds/packages/net/sing-box
 rm -rf feeds/luci/applications/luci-app-homeproxy
 git clone https://github.com/VIKINGYFY/packages.git package/vikingyfy
-sed -i 's/1.14.0_alpha1/1.14.0/g' package/vikingyfy/luci-app-homeproxy/Makefile
+
+sed -i 's/1.15.0-alpha.5/1.15.0-alpha.6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0_alpha5/1.15.0_alpha6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/966eaaf0d1f0ee159f8b6f64e3458b4ee08d941c0f39a70f82675d548b857d79/0eae23477162ea918b6481a9287658e6948aa22e26deb614fcb1fc7925cf9a5e/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0/1.15.0_alpha1/g' package/vikingyfy/luci-app-homeproxy/Makefile
 
 # 重新添加 luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash

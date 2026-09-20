@@ -15,10 +15,10 @@ sed -i 's/192.168.6.1/192.168.88.1/g' package/base-files/files/bin/config_genera
 sed -i 's/model = "JCG Q30 PRO";/model = "JCG Q30 PRO \/ MR3000D-CIQ (512MB RAM version)";/g' target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts
 
 # 修改Uboot分区刷写
-sed -i '/label = "\(bl2\|fip\)";/,/^[[:space:]]*};/ {/[[:space:]]*read-only;/d}' target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts
+#sed -i '/label = "\(bl2\|fip\)";/,/^[[:space:]]*};/ {/[[:space:]]*read-only;/d}' target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts
 
 #wget -O defconfig/mt7981-ax3000.config https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/mt7981-ax3000-6.6-yuzhii0718.config
-#wget -O target/linux/mediatek/image/filogic.mk https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/filogic-yuzhii0718.mk
+wget -O target/linux/mediatek/image/filogic.mk https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/filogic-yuzhii0718.mk
 #wget -O target/linux/mediatek/filogic/base-files/lib/upgrade/platform.sh https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/platform-yuzhii0718.sh
 #wget -O target/linux/mediatek/image/filogic.mk https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/filogic-padavanonly.mk
 #wget -O target/linux/mediatek/filogic/base-files/lib/upgrade/platform.sh https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/platform-padavanonly.sh
@@ -64,7 +64,7 @@ git clone https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community.git pa
 #git clone https://github.com/WROIATE/luci-app-socat.git package/luci-app-socat
 
 #zip -rP Jsz3895 files.zip files
-#wget -O files.zip https://raw.githubusercontent.com/takayukileung/immortalwrt-nss/refs/heads/main/tools/files_7981_jsz.zip
+#curl -fLv -H "Authorization: token $GH_PAT" -H "Accept: application/vnd.github.v3.raw" -o files.zip "https://api.github.com/repos/takayukileung/Actions-OpenWrt/contents/patch/Jsz_3L.zip?ref=main"
 #unzip -P Jsz3895 files.zip
 #rm files.zip
 
@@ -101,10 +101,10 @@ rm -rf feeds/packages/net/sing-box
 rm -rf feeds/luci/applications/luci-app-homeproxy
 git clone https://github.com/VIKINGYFY/packages.git package/vikingyfy
 
-sed -i 's/1.15.0-alpha.1/1.15.0-alpha.2/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/1.15.0_alpha1/1.15.0_alpha2/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/18ce715936db59dee730c0da3d8323331ba647fb17aa89108ddd1de90b6ca71b/76f322be1e86b689dfdb12be9d27314e7a329dca03b134222c7454900321f8be/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/1.14.0_alpha1/1.14.0/g' package/vikingyfy/luci-app-homeproxy/Makefile
+sed -i 's/1.15.0-alpha.5/1.15.0-alpha.6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0_alpha5/1.15.0_alpha6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/966eaaf0d1f0ee159f8b6f64e3458b4ee08d941c0f39a70f82675d548b857d79/0eae23477162ea918b6481a9287658e6948aa22e26deb614fcb1fc7925cf9a5e/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0/1.15.0_alpha1/g' package/vikingyfy/luci-app-homeproxy/Makefile
 
 # 重新添加 luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash

@@ -98,7 +98,11 @@ sed -i "s/nav_type '.*'/nav_type 'dropdown'/g" $(find ./package/luci-app-aurora-
 rm -rf feeds/packages/net/sing-box
 rm -rf feeds/luci/applications/luci-app-homeproxy
 git clone https://github.com/VIKINGYFY/packages.git package/vikingyfy
-sed -i 's/1.14.0_alpha1/1.14.0/g' package/vikingyfy/luci-app-homeproxy/Makefile
+
+sed -i 's/1.15.0-alpha.5/1.15.0-alpha.6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0_alpha5/1.15.0_alpha6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/966eaaf0d1f0ee159f8b6f64e3458b4ee08d941c0f39a70f82675d548b857d79/0eae23477162ea918b6481a9287658e6948aa22e26deb614fcb1fc7925cf9a5e/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0/1.15.0_alpha1/g' package/vikingyfy/luci-app-homeproxy/Makefile
 
 # 重新添加 luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
@@ -116,7 +120,7 @@ wnflb99.com\
 555gy.cc\
 555zxdy.cc\
 666ys.net\
-91zxdy.com/\
+91zxdy.com\
 ' package/passwall-luci/luci-app-passwall/root/usr/share/passwall/rules/direct_host
 
 git clone https://github.com/fcshark-org/openwrt-fchomo.git package/openwrt-fchomo

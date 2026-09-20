@@ -17,7 +17,11 @@ sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_genera
 sed -i "s/(luciversion || '')/& + (' \/ Mitsuki-$(TZ=UTC-8 date +%y.%m.%d)')/g" $(find ./feeds/luci/modules/luci-mod-status/ -name "10_system.js")
 
 # 修改Uboot分区刷写
-sed -i '/label = "\(bl2\|fip\)";/,/^[[:space:]]*};/ {/[[:space:]]*read-only;/d}' target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts
+#sed -i '/label = "\(bl2\|fip\)";/,/^[[:space:]]*};/ {/[[:space:]]*read-only;/d}' target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts
+
+# 修改 jcg-q30 生成.bin固件
+#wget -O target/linux/mediatek/dts/mt7981b-jcg-q30-pro.dts https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/chaseydev-mt7981b-jcg-q30-pro.dts
+#wget -O target/linux/mediatek/image/filogic.mk https://raw.githubusercontent.com/mitsukileung/Actions-OpenWrt/refs/heads/main/mi_patch/chaseydev-filogic.mk
 
 # 关闭 CI llvm
 #sed -i 's/llvm=true/llvm=false/g' feeds/packages/lang/rust/Makefile
@@ -82,10 +86,10 @@ rm -rf feeds/packages/net/sing-box
 rm -rf feeds/luci/applications/luci-app-homeproxy
 git clone https://github.com/VIKINGYFY/packages.git package/vikingyfy
 
-sed -i 's/1.15.0-alpha.1/1.15.0-alpha.2/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/1.15.0_alpha1/1.15.0_alpha2/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/18ce715936db59dee730c0da3d8323331ba647fb17aa89108ddd1de90b6ca71b/76f322be1e86b689dfdb12be9d27314e7a329dca03b134222c7454900321f8be/g' package/vikingyfy/sing-box/Makefile
-sed -i 's/1.14.0_alpha1/1.14.0/g' package/vikingyfy/luci-app-homeproxy/Makefile
+sed -i 's/1.15.0-alpha.5/1.15.0-alpha.6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0_alpha5/1.15.0_alpha6/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/966eaaf0d1f0ee159f8b6f64e3458b4ee08d941c0f39a70f82675d548b857d79/0eae23477162ea918b6481a9287658e6948aa22e26deb614fcb1fc7925cf9a5e/g' package/vikingyfy/sing-box/Makefile
+sed -i 's/1.15.0/1.15.0_alpha1/g' package/vikingyfy/luci-app-homeproxy/Makefile
 
 # 重新添加 luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
